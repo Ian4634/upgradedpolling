@@ -64,6 +64,10 @@ def commit(request, owner):
     for i in question:
         poll = Polls.objects.get(name=poll_name, questions=i, owner=owner)
         answer = request.POST[i]
+        if answer == '':
+            answer = 'none'
+        else:
+            pass
         if poll.answer == '':
             poll.answer = answer
         else:
