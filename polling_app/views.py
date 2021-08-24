@@ -65,7 +65,7 @@ def commit(request, owner):
         poll = Polls.objects.get(name=poll_name, questions=i, owner=owner)
         answer = request.POST[i]
         if answer == '':
-            answer = 'none'
+            answer = 'None'
         else:
             pass
         if poll.answer == '':
@@ -96,7 +96,7 @@ def inspection(request, poll_name):
     ans_number = len(answers[0])
 
     # -----------------------------------------------------
-    new = []  # [[],[]]
+    new = []  # [['地址1',地址2],[]]
     for num in range(ans_number):
         temp = []
         for ans in answers:
