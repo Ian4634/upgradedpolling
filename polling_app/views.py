@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.contrib import messages
 from .models import Polls
 import numpy as np
-
+from . import my_func
 # Create your views here.
 
 
@@ -93,7 +93,9 @@ def inspection(request, poll_name):
     poll = Polls.objects.filter(name=poll_name, owner=username)
     questions = [i.questions for i in poll]  # list of quests
     answers = [i.answer.split(',') for i in poll]  # list of aswers
-    ans_number = len(answers[0])
+    ans_numbers = [len(i) for i in answers]
+    ans_number = max(ans_numbers)
+    new_answers = [my_func.compare(ans_number, ans) for ans in answers]
 
     # -----------------------------------------------------
     new = []  # [['地址1',地址2],[]]
